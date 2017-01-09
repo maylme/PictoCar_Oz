@@ -18,8 +18,8 @@ io.on('connection', function (client) {
         "thanks"
         "tire"
         "link"
-        "light problem"
-        "can't see"
+        "light_pb"
+        "blind"
         "trunk"  
      */
     client.on("Ozbox_command", function (message) {

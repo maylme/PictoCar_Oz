@@ -1,0 +1,42 @@
+<h1 id = "connect"> Disconnected </h1>
+
+
+<h2> Oz de la Boite de commande : </h2>
+<button id= "up">Up</button>
+<button id= "down">Down</button>
+<button id= "ok">ok</button>
+<button id= "back">back</button>
+<button id= "tire">Pneu</button>
+<button id= "link">Lien</button>
+<button id= "light_pb">Lumiere anormale</button>
+<button id= "blind">aveugle</button>
+<button id= "thanks">Merci</button>
+<button id= "trunk">Coffre</button>
+
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.1.1.js"
+			  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+			  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  	var socket = io.connect('http://localhost:4200');
+
+    socket.on("connect", (server) => {
+        console.log("connected");
+        $("#connect").html("Connected ! ");
+
+        $("button").click(function(event){
+        	console.log($(this).attr("id"));
+        	socket.emit("Ozbox_command", $(this).attr("id"));
+        });
+        socket.on('wallVR', function (data) {
+            walls = data;
+            console.log("yeah : ", data)
+        });
+    });
+
+
+
+</script>
